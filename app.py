@@ -96,7 +96,7 @@ def load_model():
             "Resizing": tf.keras.layers.Resizing
         }
     )
-model = load_model()
+    model = load_model()
 
 # Label sesuai urutan folder training
 label_map = ['bengkak', 'lecet', 'memar']  # URUTANNYA HARUS BENAR sesuai train_ds.class_names
