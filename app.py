@@ -88,16 +88,24 @@ st.markdown("<p style='text-align:center;'>Upload gambar cedera untuk mengetahui
 
 @st.cache_resource
 def load_model():
-    from keras.layers import Rescaling, Resizing  # atau layer lain yang dipakai
-    return tf.keras.models.load_model(
-        "mobilenetv2_final_model.keras",
-        custom_objects={
-            "Rescaling": tf.keras.layers.Rescaling,
-            "Resizing": tf.keras.layers.Resizing
-        }
-    )
-
-
+    try:
+        from keras.layers import Rescaling, Resizing, RandomFlip, RandomRotation, RandomZoom, RandomContrast, RandomBrightness
+        return tf.keras.models.load_model(
+            "mobilenetv2_final_model.keras",
+            custom_objects={
+                "Rescaling": Rescaling,
+                "Resizing": Resizing,
+                "RandomFlip": RandomFlip,
+                "RandomRotation": RandomRotation,
+                "RandomZoom": RandomZoom,
+                "RandomContrast": RandomContrast,
+                "RandomBrightness": RandomBrightness
+            }
+        )
+    except Exception as e:
+        st.error("❌ Gagal memuat model. Error: " + str(e))
+        raise e
+        
 model = load_model()
 
 # Label sesuai urutan folder training
