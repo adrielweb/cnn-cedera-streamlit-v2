@@ -4,4 +4,3 @@ Pillow
 numpy
 h5py
 keras==2.12.0
-keras_cv==0.5.0
