@@ -89,7 +89,7 @@ st.markdown("<p style='text-align:center;'>Upload gambar cedera untuk mengetahui
 @st.cache_resource
 def load_model():
     try:
-        from keras.layers import Rescaling, Resizing, RandomFlip, RandomRotation, RandomZoom, RandomContrast
+        from keras.layers import Rescaling, Resizing, RandomFlip, RandomRotation, RandomZoom, RandomContrast, RandomBrightness
         return tf.keras.models.load_model(
             "mobilenetv2_final_model.keras",
             custom_objects={
@@ -99,6 +99,7 @@ def load_model():
                 "RandomRotation": RandomRotation,
                 "RandomZoom": RandomZoom,
                 "RandomContrast": RandomContrast,
+                "RandomBrightness": RandomBrightness
             }
         )
     except Exception as e:
@@ -158,4 +159,5 @@ if uploaded_file is not None:
     
     # Tampilkan saran berdasarkan hasil prediksi
     st.info(saran_penanganan(label))
+
 
